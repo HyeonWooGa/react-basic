@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      const [minutes, setMinutes] = React.useState();
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+      };
+      return (
+        <div>
+          <h1 className="hi">Super Converter</h1>
+          <label htmlFor="minutes">Minutes </label>
+          <input
+            value={minutes}
+            id="minutes"
+            placeholder="Minutes"
+            type="number"
+            onChange={onChange}
+          />
+          <h4>You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours </label>
+          <input id="hours" placeholder="Hours" type="number" />
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
+
+<!--HTML WAY-->
+<!--
+
+    function App() {
+      return (
+        <div>
+          <h1 class="hi">Super Converter</h1>
+          <label for="minutes">Minutes</label>
+          <input id="minutes" placeholder="Minutes" type="number" />
+          <label for="hours">Hours</label>
+          <input id="hours" placeholder="Hours" tpye="number" />
+        </div>
+      );
+    }
+-->
+<!--JSX WAY-->
+<!--
+
+    function App() {
+      return (
+        <div>
+          <h1 className="hi">Super Converter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input id="minutes" placeholder="Minutes" type="number" />
+          <label htmlFor="hours">Hours</label>
+          <input id="hours" placeholder="Hours" tpye="number" />
+        </div>
+      );
+    }
+-->
+<!-- React JS 는 Vanilla JS 와 비슷해서 함수 내에 event 사용 가능 -->
