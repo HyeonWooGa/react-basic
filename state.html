@@ -1,0 +1,71 @@
+<!-- Using State -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
+      return (
+        <div>
+          <h3>Total Clicks: {counter}</h3>
+          <button onClick={onClick}>Click me</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
+
+<!-- 
+    Components: Title, Button, Container
+-->
+
+<!--
+
+    State is basically where your data will be
+    Way of above is not good way because we must render again when onClick everytime.
+    But Good point and reason we use react is react re-render only changed part. 
+-->
+<!-- USING STATE-->
+<!--
+
+    function App() {
+      const data = React.useState();
+      console.log(data); -> [undefined, f]
+    }
+-->
+<!--
+
+    function App() {
+      const data = React.useState(0);
+      console.log(data); -> [0, f]
+    }
+-->
+<!--JAVASCRIPT SHORTCUT-->
+<!--
+
+    const x = [1, 2, 3];
+    const a = x[0];
+    const b = x[1];
+    const c = x[2];
+    ----------------------
+    const x = [1, 2, 3];
+    const [a, b, c] = x;
+-->
+<!--WHY WE NEED MODIFIER-->
+<!--
+
+    At Previous post, Our way is using  ReactDom.render by trigger
+    But It can be stressfull cause ReactDom need whole code again.
+    So We use modifier when we use 'State' like above way.(Common Way of React).
+-->
