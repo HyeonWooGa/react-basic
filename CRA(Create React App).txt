@@ -1,0 +1,2 @@
+CRA = best way to create react app, everyon use this
+
