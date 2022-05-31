@@ -11,27 +11,31 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    function Btn({ text, big }) {
+    function Btn({ text, onClick }) {
+      console.log(text + " was rendered");
       return (
         <button
+          onClick={onClick}
           style={{
             backgroundColor: "tomato",
             color: "white",
             padding: "10px 20px",
             border: 0,
             borderRadius: 10,
-            fontSize: big ? 18 : 16,
           }}
         >
           {text}
         </button>
       );
     }
+    const MemorizedBtn = React.memo(Btn);
     function App() {
+      const [value, setValue] = React.useState("Svae Change");
+      const changeValue = () => setValue("Revert Changes");
       return (
         <div>
-          <Btn text="Save Change" big={true} />
-          <Btn text="Countinue" big={false} />
+          <MemorizedBtn text={value} onClick={changeValue} />
+          <MemorizedBtn text="Countinue" />
         </div>
       );
     }
@@ -47,4 +51,19 @@
          Our way before props is copy and paste to all button or component.
          But Props way is don't need copy & paste again. 
     2) Props is first argument and only argument and Object.
+-->
+<!--
+    What can we send as Props
+
+    String, Boolean, Number, Function
+-->
+<!--
+    
+    onClick in line APP Component is not EventListener. It's just Props.
+    Custom made property's name is can be anything.
+-->
+<!-- 
+    React Memo 
+
+    We can decide if we want re-render component or not if props don;t change.
 -->
