@@ -11,7 +11,10 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    function App() {
+    function Select() {
+      return <div>Select What You Convert</div>;
+    }
+    function KmToMiles() {
       const [amount, setAmount] = React.useState(0);
       const [inverted, setInverted] = React.useState(false);
       const onChange = (event) => {
@@ -24,7 +27,50 @@
       };
       return (
         <div>
-          <h1>Super Converter</h1>
+          <div>
+            <label htmlFor="amount">Kilo Meters </label>
+            <input
+              value={inverted ? Math.round(amount * 1.609 * 100) / 100 : amount}
+              id="amount"
+              placeholder="Kilo Meters"
+              type="number"
+              onChange={onChange}
+              disabled={inverted}
+            />
+          </div>
+          <div>
+            <label htmlFor="miles">Miles </label>
+            <input
+              value={
+                inverted ? amount : Math.round((amount / 1.609) * 100) / 100
+              }
+              id="miles"
+              placeholder="Miles"
+              type="number"
+              disabled={!inverted}
+              onChange={onChange}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onInvert}>
+            {inverted ? "Turn back" : "Invert"}
+          </button>
+        </div>
+      );
+    }
+    function MinutesToHours() {
+      const [amount, setAmount] = React.useState(0);
+      const [inverted, setInverted] = React.useState(false);
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+      const reset = () => setAmount(0);
+      const onInvert = () => {
+        reset();
+        setInverted((current) => !current);
+      };
+      return (
+        <div>
           <div>
             <label htmlFor="amount">Minutes </label>
             <input
@@ -51,6 +97,27 @@
           <button onClick={onInvert}>
             {inverted ? "Turn back" : "Invert"}
           </button>
+        </div>
+      );
+    }
+
+    function App() {
+      const [index, setIndex] = React.useState("xx");
+      const onChange = (event) => {
+        setIndex(event.target.value);
+      };
+      return (
+        <div>
+          <h1>Super Converter</h1>
+          <select value={index} onChange={onChange}>
+            <option value="xx">Select</option>
+            <option value="0">Minutes & Hours</option>
+            <option value="1">Kilo Meter & Miles</option>
+          </select>
+          <br />
+          {index === "xx" ? <Select /> : null}
+          {index === "0" ? <MinutesToHours /> : null}
+          {index === "1" ? <KmToMiles /> : null}
         </div>
       );
     }
@@ -89,3 +156,4 @@
     }
 -->
 <!-- React JS 는 Vanilla JS 와 비슷해서 함수 내에 event 사용 가능 -->
+<!-- {} 안의 내용은 JS 로 인식 -->
